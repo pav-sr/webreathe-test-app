@@ -13,7 +13,7 @@ class ModuleTest extends TestCase
 
     public function testCreate(): void
     {
-        $response = $this->post('/modules', ['name' => 'module_1', 'type' => 'TEMP']);
+        $response = $this->post('/api/modules', ['name' => 'module_1', 'type' => 'TEMP']);
         $response->assertStatus(200);
 
         $modules = Module::all();
@@ -26,9 +26,9 @@ class ModuleTest extends TestCase
 
     public function testList(): void
     {
-        $this->post('/modules', ['name' => 'module_1', 'type' => 'TEMP']);
-        $this->post('/modules', ['name' => 'module_2', 'type' => 'SPEED']);
-        $this->post('/modules', ['name' => 'module_3', 'type' => 'PRESSURE']);
+        $this->post('/api/modules', ['name' => 'module_1', 'type' => 'TEMP']);
+        $this->post('/api/modules', ['name' => 'module_2', 'type' => 'SPEED']);
+        $this->post('/api/modules', ['name' => 'module_3', 'type' => 'PRESSURE']);
 
         $data = $this->getJson('/api/modules')->assertStatus(200)->json();
 

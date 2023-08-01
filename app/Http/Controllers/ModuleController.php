@@ -21,11 +21,7 @@ class ModuleController extends BaseController
         SaveModuleService $saveModuleService
     ): RedirectResponse {
         if ($request->validated()) {
-//            try {
-                $saveModuleService->save($request);
-//            } catch (\Exception $e) {
-//                return back()->withErrors(['exception' => $e->getMessage()]);
-//            }
+            $saveModuleService->save($request);
         }
 
         return redirect()->route('modules-list');

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Enums\ModuleStatus;
 use App\Models\Module;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -13,7 +14,7 @@ class HistoryTest extends TestCase
 
     public function testCreated(): void
     {
-        $response = $this->post('/modules', ['name' => 'module_1', 'type' => 'TEMP']);
+        $response = $this->post('/api/modules', ['name' => 'module_1', 'type' => 'TEMP']);
         $response->assertStatus(200);
 
         $modules = Module::all();

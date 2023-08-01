@@ -22,6 +22,10 @@ Route::get('modules', [
     \App\Http\Controllers\Api\ModuleController::class, 'getAll'
 ]);
 
+Route::post('modules', [
+    \App\Http\Controllers\Api\ModuleController::class, 'create'
+]);
+
 Route::get('modules/failed', [
     \App\Http\Controllers\Api\ModuleController::class, 'getFailed'
 ]);

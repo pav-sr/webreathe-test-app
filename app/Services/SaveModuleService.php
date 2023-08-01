@@ -10,7 +10,7 @@ class SaveModuleService
     /**
      * @throws \Throwable
      */
-    public function save(ModulePostRequest $request): void
+    public function save(ModulePostRequest $request): Module
     {
         $module = new Module();
 
@@ -21,5 +21,7 @@ class SaveModuleService
         $module->type = $type;
 
         $module->saveOrFail();
+
+        return $module;
     }
 }

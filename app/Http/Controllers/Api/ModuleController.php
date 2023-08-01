@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Enums\ModuleStatus;
+use App\Http\Requests\ModulePostRequest;
 use App\Http\Resources\ModuleCollection;
 use App\Http\Resources\ModuleFailedCollection;
 use App\Http\Resources\ModuleResource;
 use App\Models\Module;
+use App\Services\SaveModuleService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller as BaseController;
 
 class ModuleController extends BaseController
@@ -31,5 +34,16 @@ class ModuleController extends BaseController
         $modules = Module::where('status', ModuleStatus::Failed)->get();
 
         return response()->json(new ModuleFailedCollection($modules));
+    }
+
+    public function create(
+        ModulePostRequest $request,
+        SaveModuleService $saveModuleService
+    ): JsonResponse {
+        if ($request->validated()) {
+            $module = $saveModuleService->save($request);
+        }
+
+        return response()->json(new ModuleResource($module));
     }
 }

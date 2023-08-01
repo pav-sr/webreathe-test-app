@@ -17,3 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('modules', [
+    \App\Http\Controllers\Api\ModuleController::class, 'getAll'
+]);
+
+Route::get('modules/failed', [
+    \App\Http\Controllers\Api\ModuleController::class, 'getFailed'
+]);
+
+Route::get('modules/{module}', [
+    \App\Http\Controllers\Api\ModuleController::class, 'getOne'
+]);
+
+Route::get('history/{module}', [
+    \App\Http\Controllers\Api\HistoryController::class, 'getByModule'
+]);
